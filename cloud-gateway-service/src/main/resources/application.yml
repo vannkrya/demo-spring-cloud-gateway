@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: employee-service-module
+          uri: http://localhost:8081
+          predicates:
+            - Path=/employee/*
+#          filters:
+#            - RewritePath=/employee/(?<segment>.*), /$\{segment}
+
+        - id: consumer-service-module
+          uri: http://localhost:8082
+          predicates:
+            - Path=/consumer/*
